@@ -48,6 +48,9 @@ nmap <Esc>OH <Esc>01
 imap <Esc>OH <Home>
 cmap <Esc>OF 0
 
+" Backup Dir
+set backupdir=~/.vimtmp
+
 call plug#begin('~/.config/nvim/plugged')
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -62,8 +65,21 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-unimpaired'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tomasr/molokai'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" LSP
+Plug 'neovim/nvim-lspconfig'
+
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'windwp/nvim-ts-autotag'
 call plug#end()
 
 " TELESCOPE CONFIG
@@ -80,24 +96,6 @@ set t_Co=256
 set termguicolors
 colorscheme molokai
 let g:airline_theme = 'papercolor'
-
-" COC CONFIG
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-    set signcolumn=number
-else
-    set signcolumn=yes
-endif
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " SHORTCUTS
 let g:relative_number_toggle = 0
@@ -120,3 +118,10 @@ vmap <leader>Y "*y
 nmap <leader>P "*p
 
 autocmd Filetype css,scss,sass setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+
+" lsp
+lua << EOF
+require 'cmp-config'
+require 'lsp-servers-config'
+require 'treesitter-config'
+EOF
