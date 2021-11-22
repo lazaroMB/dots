@@ -63,8 +63,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-unimpaired'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'tomasr/molokai'
+Plug 'sainnhe/sonokai'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -94,8 +93,12 @@ let g:airline_powerline_fonts = 1
 " UI THEME
 set t_Co=256
 set termguicolors
-colorscheme molokai
-let g:airline_theme = 'papercolor'
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_transparent_background = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
+let g:airline_theme = 'sonokai'
 
 " SHORTCUTS
 let g:relative_number_toggle = 0
