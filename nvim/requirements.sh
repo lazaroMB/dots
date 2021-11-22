@@ -1,3 +1,4 @@
+npm install -g typescript typescript-language-server
 npm i -g bash-language-server
 npm install -g vim-language-server
 npm install -g @tailwindcss/language-server
