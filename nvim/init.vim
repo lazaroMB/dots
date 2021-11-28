@@ -63,7 +63,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-unimpaired'
-Plug 'sainnhe/sonokai'
+Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -86,19 +86,17 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>gg <cmd>Telescope live_grep<cr>
 nnoremap <leader>bb <cmd>Telescope buffers<cr>
 
-" AIRLINE CONFIG
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 " UI THEME
 set t_Co=256
 set termguicolors
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_transparent_background = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
-let g:airline_theme = 'sonokai'
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+autocmd vimenter * ++nested colorscheme gruvbox
+
+" AIRLINE CONFIG
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'gruvbox'
 
 " SHORTCUTS
 let g:relative_number_toggle = 0
