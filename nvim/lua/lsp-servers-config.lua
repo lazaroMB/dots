@@ -31,7 +31,12 @@ require'lspconfig'.dotls.setup{
 }
 
 require'lspconfig'.tailwindcss.setup{
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  settings = {
+    tailwindCSS = {
+      classAttributes = { 'class' , 'className' , 'classList' }
+    }
+  }
 }
 
 require'lspconfig'.html.setup{
