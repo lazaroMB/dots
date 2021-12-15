@@ -63,7 +63,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-unimpaired'
-Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -87,16 +87,16 @@ nnoremap <leader>gg <cmd>Telescope live_grep<cr>
 nnoremap <leader>bb <cmd>Telescope buffers<cr>
 
 " UI THEME
-set t_Co=256
-set termguicolors
-set background=dark
-let g:gruvbox_contrast_dark='hard'
-autocmd vimenter * ++nested colorscheme gruvbox
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 
 " AIRLINE CONFIG
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'jellybeans'
 
 " SHORTCUTS
 let g:relative_number_toggle = 0
