@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 
 return {
     -- font = wezterm.font('Fira Code', { weight = 'Bold', italic = false }),
@@ -13,27 +14,57 @@ return {
         {
             key = '-',
             mods = 'LEADER',
-            action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+            action = act.SplitVertical { domain = 'CurrentPaneDomain' },
         },
         {
             key = '|',
             mods = 'LEADER',
-            action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+            action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
         },
         {
             key = 'z',
             mods = 'LEADER',
-            action = wezterm.action.TogglePaneZoomState
+            action = act.TogglePaneZoomState
         },
         {
             key = '/',
             mods = 'LEADER',
-            action = wezterm.action.Search {CaseSensitiveString=''},
+            action = act.Search {CaseSensitiveString=''},
         },
         {
             key = 'x',
             mods = 'LEADER',
-            action = wezterm.action.CloseCurrentPane {confirm=true}
+            action = act.CloseCurrentPane {confirm=true}
+        },
+        {
+            key = 'n',
+            mods = 'LEADER',
+            action = act.ActivateTabRelative(1)
+        },
+        {
+            key = 'c',
+            mods = 'LEADER',
+            action = act.SpawnTab 'DefaultDomain'
+        },
+        {
+            key = 'LeftArrow',
+            mods = 'LEADER',
+            action = act.ActivatePaneDirection 'Left',
+        },
+        {
+            key = 'RightArrow',
+            mods = 'LEADER',
+            action = act.ActivatePaneDirection 'Right',
+        },
+        {
+            key = 'UpArrow',
+            mods = 'LEADER',
+            action = act.ActivatePaneDirection 'Up',
+        },
+        {
+            key = 'DownArrow',
+            mods = 'LEADER',
+            action = act.ActivatePaneDirection 'Down',
         },
     },
 }
