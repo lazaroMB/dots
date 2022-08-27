@@ -67,8 +67,13 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'nvim-lua/popup.nvim'
+
 " LSP
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -79,6 +84,10 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-ts-autotag'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 call plug#end()
 
 " TELESCOPE CONFIG
@@ -87,10 +96,8 @@ nnoremap <leader>gg <cmd>Telescope live_grep<cr>
 nnoremap <leader>bb <cmd>Telescope buffers<cr>
 
 " UI THEME
-set termguicolors     " enable true colors support
-let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-let ayucolor="dark"   " for dark version of theme
+set termguicolors
+let ayucolor="dark"
 colorscheme ayu
 
 " AIRLINE CONFIG
@@ -119,10 +126,15 @@ vmap <leader>Y "*y
 nmap <leader>P "*p
 
 autocmd Filetype css,scss,sass setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+autocmd Filetype go setlocal noet ci pi sts=0 sw=4 ts=4
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " lsp
 lua << EOF
 require 'cmp-config'
 require 'lsp-servers-config'
 require 'treesitter-config'
+require 'saga-config'
 EOF
