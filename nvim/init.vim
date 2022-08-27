@@ -27,7 +27,8 @@ filetype plugin indent on "filetype-based indentation
 set tabstop=4 expandtab shiftwidth=4 softtabstop=4 "python-compatible tab setup 
 " set tabstop=2 expandtab shiftwidth=2 softtabstop=2 "python-compatible tab setup 
 set foldmethod=indent foldlevel=99 "python-compatible folding
-set number "line numbers
+"set number "line numbers
+set relativenumber
 set cursorline
 set incsearch
 set hlsearch
@@ -99,6 +100,8 @@ nnoremap <leader>bb <cmd>Telescope buffers<cr>
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
+highlight LineNr guibg=black
+highlight LineNr guifg=orange
 
 " AIRLINE CONFIG
 let g:airline#extensions#tabline#enabled = 1
@@ -106,7 +109,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'
 
 " SHORTCUTS
-let g:relative_number_toggle = 0
+let g:relative_number_toggle = 1
 function RelativeNumberToggle()
     if g:relative_number_toggle == 0
         let g:relative_number_toggle = 1
