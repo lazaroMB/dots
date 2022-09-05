@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 
 return {
-    -- font = wezterm.font('Fira Code', { weight = 'Bold', italic = false }),
+    font = wezterm.font('Source Code Pro for Powerline', { weight = 'Medium', italic = false }),
     color_scheme = "Belge (terminal.sexy)",
     font_size = 14,
     use_fancy_tab_bar = false,
