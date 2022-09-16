@@ -1,4 +1,4 @@
-Points,Strokes,Distance,Time,Speed,Acceleration,FittsValue,SigmaLog Normal,StraightPath,ConstVelocity,Class
+Points,Strokes,Distance,Time,Speed,Acceleration,FittsValue,SigmaLogNormal,StraightPath,ConstVelocity,Class
 69,1,182.3417039,844,947.3869483,0.2160446729,0,0,0,0,0
 66,1,648.7853142,899,15512.45641,0.7216744318,0,0,0,0,0
 95,1,870.0657449,1259,1146.986514,0.6910768427,0,0,0,0,0
