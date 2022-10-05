@@ -69,18 +69,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'nvim-lua/popup.nvim'
-
-" LSP
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
-
-" Completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" COC
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -100,7 +90,7 @@ nnoremap <leader>bb <cmd>Telescope buffers<cr>
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
-highlight LineNr guibg=black
+" highlight LineNr guibg=black
 highlight LineNr guifg=orange
 
 " AIRLINE CONFIG
@@ -129,15 +119,11 @@ vmap <leader>Y "*y
 nmap <leader>P "*p
 
 autocmd Filetype css,scss,sass setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+autocmd Filetype dart setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 autocmd Filetype go setlocal noet ci pi sts=0 sw=4 ts=4
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
-" lsp
-lua << EOF
-require 'cmp-config'
-require 'lsp-servers-config'
-require 'treesitter-config'
-require 'saga-config'
-EOF
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"

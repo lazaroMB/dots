@@ -1,0 +1,27 @@
+{
+    "languageserver": {
+        "go": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "trace.server": "verbose",
+            "filetypes": ["go"]
+        },
+        "dart": {
+            "command": "dart",
+            "args": [
+                "language-server",
+                "--lsp",
+                "--client-id",
+                "nvim",
+                "--client-version",
+                "coc.nvim"
+            ],
+            "filetypes": ["dart"],
+            "trace.server": "verbose"
+        }
+    },
+    "coc.preferences.formatOnSaveFiletypes": [
+        "dart",
+        "go"
+    ]
+}
