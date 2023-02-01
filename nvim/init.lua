@@ -162,6 +162,15 @@ require('lualine').setup {
     section_separators = '',
     separator = { left = '', right = ''}
   },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        file_status = false, -- displays file status (readonly status, modified status)
+        path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+      },
+    },
+  },
 }
 
 -- Enable Comment.nvim
