@@ -1,0 +1,48 @@
+{
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    },
+    "dart": {
+      "command": "dart",
+      "args": [
+        "language-server",
+        "--lsp",
+        "--client-id",
+        "nvim",
+        "--client-version",
+        "coc.nvim"
+      ],
+      "filetypes": ["dart"]
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "scss",
+    "css",
+    "sass"
+  ],
+  "prettier.singleQuote": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "emmet.includeLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html"
+  ],
+  "codeLens.enable": false,
+  "rust-analyzer.enable": true,
+  "deno.enable": true,
+  "deno.lint": true,
+  "editor.formatOnSave": true,
+  "[typescript]": { "editor.defaultFormatter": "denoland.vscode-deno" }
+}
