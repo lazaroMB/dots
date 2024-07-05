@@ -1,3 +1,5 @@
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -40,6 +42,7 @@ require('packer').startup(function(use)
 
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'vrischmann/tree-sitter-templ',
     after = 'nvim-treesitter',
   }
 
@@ -48,7 +51,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'ayu-theme/ayu-vim' -- Theme inspired by Atom
+  -- use 'ayu-theme/ayu-vim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -59,6 +62,17 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  -- telescope explore
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
+
+  -- Dart plugin
+  use 'dart-lang/dart-vim-plugin'
+  use 'natebosch/vim-lsc'
+  use 'natebosch/vim-lsc-dart'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -206,10 +220,26 @@ require('telescope').setup {
       },
     },
   },
+    extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
 }
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'file_browser')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -227,6 +257,11 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set("n", "<leader>re", function()
+	require("telescope").extensions.file_browser.file_browser()
+end)
+vim.api.nvim_set_keymap('n', '<leader>E', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true, silent = true })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -344,7 +379,7 @@ end
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
+--n
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
@@ -397,6 +432,17 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
+  window = {
+    completion = { -- rounded border; thin-style scrollbar
+      border = 'rounded',
+      scrollbar = '║',
+    },
+    documentation = { -- no border; native-style scrollbar
+      border = 'rounded',
+      scrollbar = '',
+      -- other options
+    },
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
